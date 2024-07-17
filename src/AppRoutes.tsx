@@ -1,9 +1,14 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./layout/Layout";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
-function App() {
+function AppRoutes() {
   return (
-    <div className="h-screen bg-black text-white">
+    <div className="h-[90vh] text-white">
+      <Header />
       <Routes>
         <Route
           path="/"
@@ -21,10 +26,15 @@ function App() {
             </Layout>
           }
         />
+
+        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/sign-up" element={<SignUp />} />
+
         <Route path="*" element={<Navigate to={"/"} />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
 
-export default App;
+export default AppRoutes;

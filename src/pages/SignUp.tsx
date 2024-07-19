@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import * as apiClient from "../api-client";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export type RegisterFormData = {
   firstName: string;
@@ -19,9 +20,12 @@ function SignUp() {
     formState: { errors },
   } = useForm<RegisterFormData>();
 
+  const naivgateUser = useNavigate();
+
   const mutation = useMutation(apiClient.register, {
     onSuccess: () => {
       toast.success("registation successfull !!");
+      naivgateUser("/");
     },
 
     onError: (error: Error) => {
